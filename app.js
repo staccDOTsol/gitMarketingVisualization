@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
             owner: owner
 })
 })
-app.post('/', (req, res) => {
+app.post('/post', (req, res) => {
 	key = req.body.key
 	owner = req.body.owner
 	reinitialize(res, true)
@@ -43,7 +43,7 @@ const octokit = Octokit({
 go(tof)
 
 }
-async function go(){
+async function go(tof){
 	try{
 	var repos = await octokit.repos.list()
 	for (var r in repos.data){

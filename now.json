@@ -8,7 +8,7 @@
       "methods": ["GET"]
     },
     {
-      "src": "/",
+      "src": "/post",
       "dest": "/app.js",
       "methods": ["POST"]
     }
