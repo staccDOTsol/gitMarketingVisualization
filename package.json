@@ -4,10 +4,10 @@
   "description": "Giving you aggregate viewership information for all your GitHub repos!",
   "main": "app.js",
   "dependencies": {
+    "@octokit/rest": "^16.28.9",
     "body-parser": "^1.19.0",
     "ejs": "^2.7.1",
-    "express": "^4.17.1",
-    "@octokit/rest": "*"
+    "express": "^4.17.1"
   },
   "devDependencies": {},
   "scripts": {
