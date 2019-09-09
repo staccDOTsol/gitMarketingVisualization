@@ -2,7 +2,9 @@ const Octokit = require('@octokit/rest')
 const express = require('express');
 const app = express();
 var bodyParser = require('body-parser')
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.engine('ejs', require('ejs').renderFile);
 app.listen(5000, function() {});
 
 app.use(bodyParser.json()); // to support JSON-encoded bodies
