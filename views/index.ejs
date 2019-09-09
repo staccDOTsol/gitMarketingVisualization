@@ -200,10 +200,8 @@
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 Check out the code here: <a href="https://github.com/DunnCreativeSS/gitMarketingVisualization">https://github.com/DunnCreativeSS/gitMarketingVisualization</a><br>Grab your own token (with only the Repo scope) from <a href="https://github.com/settings/tokens/new">https://github.com/settings/tokens/new</a>, and plug it in here to update the graph with the aggregate visitor counts from your repos!<br><br>
-<form action="/post" method="post">
-Key: <input type="text" value="<%- key %>" name='key' id='key'></input><br>
-
-Owner: <input type="text" value="<%- owner %>" name='owner' id='owner'></input>
+<form action="/" method="post">
+<input type="text" value="<%- key %>" name='key' id='key'></input>
 <input type="submit"></input>
 </form>
 <div id="container" style="height: 500px; min-width: 310px"></div>
@@ -218,7 +216,7 @@ Owner: <input type="text" value="<%- owner %>" name='owner' id='owner'></input>
         var views = []
         var names = []
         var data = <%- JSON.stringify(views) %>;
-        console.log(data)
+        
         for (var i in data){
         names.push(i)
         for (var x in data[i]){
@@ -229,7 +227,7 @@ Owner: <input type="text" value="<%- owner %>" name='owner' id='owner'></input>
         }
         }
         var c = 0
-        console.log(views)
+        console.log(names)
         for (var i in views){
         console.log(names[c])
             chart.addSeries({                        
@@ -256,26 +254,6 @@ Owner: <input type="text" value="<%- owner %>" name='owner' id='owner'></input>
 
         rangeSelector: {
             buttons: [{
-                count: 1,
-                type: 'minute',
-                text: '1m'
-            }, {
-                count: 5,
-                type: 'minute',
-                text: '5m'
-            }, {
-                count: 10,
-                type: 'minute',
-                text: '10m'
-            }, {
-                count: 30,
-                type: 'minute',
-                text: '30m'
-            }, {
-                count: 1,
-                type: 'hour',
-                text: '1h'
-            }, {
                 type: 'all',
                 text: 'All'
             }],

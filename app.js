@@ -64,7 +64,6 @@ try{
 		console.log(err)
 	}
 	}
-	console.log(views)
 }
 catch(err){
 	console.log(err)
