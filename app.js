@@ -14,20 +14,20 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 app.get('/', (req, res) => {
  res.render('index.ejs', {
             views: views,
-            key: key
+            key: key,
+            owner: owner
 })
 })
 app.post('/', (req, res) => {
 	key = req.body.key
-	reinitialize()
- res.render('index.ejs', {
-            views: views,
-            key: key
-})
+	owner = req.body.owner
+	reinitialize(res, true)
+ 
 })
 var views = {}
+var owner = "dunncreativess"
 var key = 'bf4097af282651de76714d01eea0e4e8d0696d8c'
-function reinitialize(){
+function reinitialize(res, tof){
 const octokit = Octokit({
       auth: key,
   baseUrl: 'https://api.github.com',
@@ -45,7 +45,7 @@ async function go(){
 	for (var r in repos.data){
 try{
 		var vs = await octokit.repos.getViews({
-		  'owner':'dunncreativess',
+		  'owner':owner,
 		  'repo': repos.data[r].name
 		})
 		for(var v in vs.data.views){
@@ -67,5 +67,12 @@ catch(err){
 }
 }
 go()
+if (tof){
+	res.render('index.ejs', {
+            views: views,
+            key: key,
+            owner: owner
+})
+}
 }
 reinitialize()
