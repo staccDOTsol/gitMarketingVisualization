@@ -40,10 +40,10 @@ const octokit = Octokit({
 
 })
 
-go(tof)
+go(res, tof)
 
 }
-async function go(tof){
+async function go(res, tof){
 	try{
 	var repos = await octokit.repos.list()
 	for (var r in repos.data){
