@@ -40,14 +40,8 @@ const octokit = Octokit({
 
 })
 
-go()
-if (tof){
-	res.render('index.ejs', {
-            views: views,
-            key: key,
-            owner: owner
-})
-}
+go(tof)
+
 }
 async function go(){
 	try{
@@ -74,6 +68,13 @@ catch(err){
 	setTimeout(function(){
 		go()
 	},4000)
+}
+if (tof){
+	res.render('index.ejs', {
+            views: views,
+            key: key,
+            owner: owner
+})
 }
 }
 reinitialize()
