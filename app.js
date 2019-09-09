@@ -26,7 +26,7 @@ app.post('/', (req, res) => {
 })
 })
 var views = {}
-var key = '6f186a4a216e10a47880b99470116cae349239c8'
+var key = 'bf4097af282651de76714d01eea0e4e8d0696d8c'
 function reinitialize(){
 const octokit = Octokit({
       auth: key,
@@ -40,6 +40,7 @@ const octokit = Octokit({
 
 })
 async function go(){
+	try{
 	var repos = await octokit.repos.list()
 	for (var r in repos.data){
 try{
@@ -58,6 +59,12 @@ try{
 		console.log(err)
 	}
 	}
+}
+catch(err){
+	setTimeout(function(){
+		go()
+	},4000)
+}
 }
 go()
 }
