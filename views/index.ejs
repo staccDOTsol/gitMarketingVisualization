@@ -201,6 +201,7 @@
 <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 Check out the code here: <a href="https://github.com/DunnCreativeSS/gitMarketingVisualization">https://github.com/DunnCreativeSS/gitMarketingVisualization</a><br>Grab your own token (with only the Repo scope) from <a href="https://github.com/settings/tokens/new">https://github.com/settings/tokens/new</a>, and plug it in here to update the graph with the aggregate visitor counts from your repos - or just press submit with default values to see if my key still loads!<br><br>
 <form action="/post" method="post">
+<input type="text" value="<%- owner %>" name='owner' id='owner'></input>
 <input type="text" value="<%- key %>" name='key' id='key'></input>
 <input type="submit"></input>
 </form>
