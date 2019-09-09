@@ -1,7 +1,33 @@
 const Octokit = require('@octokit/rest')
+const express = require('express');
+const app = express();
+var bodyParser = require('body-parser')
+app.set('view engine', 'ejs');
+app.listen(5000, function() {});
 
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+    extended: true
+}));
+app.get('/', (req, res) => {
+ res.render('index.ejs', {
+            views: views,
+            key: key
+})
+})
+app.post('/', (req, res) => {
+	key = req.body.key
+	reinitialize()
+ res.render('index.ejs', {
+            views: views,
+            key: key
+})
+})
+var views = {}
+var key = '6f186a4a216e10a47880b99470116cae349239c8'
+function reinitialize(){
 const octokit = Octokit({
-      auth: '0d553a6b68d863b51ab3ea1433233eb9b6ed5587',
+      auth: key,
   baseUrl: 'https://api.github.com',
   log: {
     debug: () => {},
@@ -11,17 +37,26 @@ const octokit = Octokit({
   }
 
 })
-
 async function go(){
 	var repos = await octokit.repos.list()
 	for (var r in repos.data){
-		if (repos.data[r].watching_count >= 1 || repos.data[r].stargazers_count >= 1 || repos.data[r].fork_count >= 1){
-		var views = await octokit.repos.getViews({
+try{
+		var vs = await octokit.repos.getViews({
 		  'owner':'dunncreativess',
 		  'repo': repos.data[r].name
 		})
-		console.log(views)
+		for(var v in vs.data.views){
+			if (views[repos.data[r].name] == undefined){
+				views[repos.data[r].name] = []
+			}
+			views[repos.data[r].name].push(vs.data.views[v])
+		}
+	}
+	catch (err){
+		console.log(err)
 	}
 	}
 }
 go()
+}
+reinitialize()
