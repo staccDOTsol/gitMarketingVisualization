@@ -1,4 +1,5 @@
 const Octokit = require('@octokit/rest')
+var octokit;
 const express = require('express');
 const app = express();
 var bodyParser = require('body-parser')
@@ -28,7 +29,7 @@ var views = {}
 var owner = "dunncreativess"
 var key = '0e454bf741c5da308bf7016724134571d4c17ce1'
 function reinitialize(res, tof){
-const octokit = Octokit({
+octokit = Octokit({
       auth: key,
   baseUrl: 'https://api.github.com',
   log: {
@@ -63,8 +64,10 @@ try{
 		console.log(err)
 	}
 	}
+	console.log(views)
 }
 catch(err){
+	console.log(err)
 	setTimeout(function(){
 		go()
 	},4000)
