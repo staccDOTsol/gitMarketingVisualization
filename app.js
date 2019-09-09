@@ -26,7 +26,7 @@ app.post('/', (req, res) => {
 })
 var views = {}
 var owner = "dunncreativess"
-var key = 'bf4097af282651de76714d01eea0e4e8d0696d8c'
+var key = '0e454bf741c5da308bf7016724134571d4c17ce1'
 function reinitialize(res, tof){
 const octokit = Octokit({
       auth: key,
@@ -39,6 +39,16 @@ const octokit = Octokit({
   }
 
 })
+
+go()
+if (tof){
+	res.render('index.ejs', {
+            views: views,
+            key: key,
+            owner: owner
+})
+}
+}
 async function go(){
 	try{
 	var repos = await octokit.repos.list()
@@ -64,15 +74,6 @@ catch(err){
 	setTimeout(function(){
 		go()
 	},4000)
-}
-}
-go()
-if (tof){
-	res.render('index.ejs', {
-            views: views,
-            key: key,
-            owner: owner
-})
 }
 }
 reinitialize()
