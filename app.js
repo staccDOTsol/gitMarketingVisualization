@@ -27,7 +27,7 @@ app.post('/post', (req, res) => {
 })
 var views = {}
 var owner = "dunncreativess"
-var key = '0e454bf741c5da308bf7016724134571d4c17ce1'
+var key = '1222cf3d9dc4efd54777fefca5ae0309e18d8f00'
 function reinitialize(res, tof){
 octokit = Octokit({
       auth: key,
